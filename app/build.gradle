@@ -1,0 +1,35 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.ohli.ioslauncher'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.ohli.ioslauncher'
+        minSdk 26
+        targetSdk 28
+        versionCode 1
+        versionName '1.0.0'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+        }
+        release {
+            // Debug keystore is used only to make a directly installable personal-test APK.
+            // Create a private release keystore before distributing this app publicly.
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
